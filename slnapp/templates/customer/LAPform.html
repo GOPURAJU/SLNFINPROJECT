@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<<<<<<< HEAD
+    <title>Loan Application</title>
+=======
+    <title>LAP Application</title>
+>>>>>>> a5367d0 (msg)
+    <script>
+        function toggleFields() {
+            const incomeSource = document.getElementById('id_income_source').value;
+            const jobFields = document.getElementById('job-fields');
+            const businessFields = document.getElementById('business-fields');
+    
+            if (incomeSource === 'JOB') {
+                jobFields.style.display = 'block';
+                businessFields.style.display = 'none';
+            } else {
+                jobFields.style.display = 'none';
+                businessFields.style.display = 'block';
+            }
+        }
+    
+        function toggleGstRequirement() {
+            const gstCertificate = document.getElementById('id_gst_certificate').value;
+            const gstNumberField = document.getElementById('id_gst_number');
+    
+            if (gstCertificate === true) {
+                gstNumberField.setAttribute('required', 'required');
+            } else {
+                gstNumberField.removeAttribute('required');
+            }
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleFields(); // Initial state setup
+            document.getElementById('id_income_source').addEventListener('change', toggleFields); // Add onchange event
+    
+            // Add onchange event for GST certificate
+            document.getElementById('id_gst_certificate').addEventListener('change', toggleGstRequirement);
+            
+            toggleGstRequirement(); // Set initial requirement state for GST number
+        });
+    </script>
+    
+    
+</head>
+<body>
+<div class="container offset-md-1">
+    
+    <h1 class="mt-5">Loan Application Form</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+        <div class="form-group">
+            <label for="id_loan_type">Loan Type</label>
+            {{ form.loan_type }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_first_name">First Name</label>
+            {{ form.first_name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_last_name">Last Name</label>
+            {{ form.last_name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_gender">Gender</label>
+            {{ form.gender }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_date_of_birth">Date of Birth</label>
+            {{ form.date_of_birth }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_mobile_number">Mobile Number</label>
+            {{ form.mobile_number }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_pan_card_number">PAN Card Number</label>
+            {{ form.pan_card_number }}
+        </div>
+        <div class="form-group">
+            <label for="id_current_address">Current Address</label>
+            {{ form.current_address }}
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="form-group">
+            <label for="id_aadhar_card_number">Aadhar Card Number</label>
+            {{ form.aadhar_card_number }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_marital_status">Marital Status</label>
+            {{ form.marital_status }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_email_id">Email ID</label>
+            {{ form.email_id }}
+        </div>
+        
+       
+        
+        <div class="form-group">
+            <label for="id_current_address_pincode">Current Address Pincode</label>
+            {{ form.current_address_pincode }}
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="id_aadhar_pincode">Aadhar Pincode</label>
+            {{ form.aadhar_pincode }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_income_source">Income Source</label>
+            {{ form.income_source }}
+        </div>
+        <div class="form-group">
+            <label for="id_aadhar_address">Aadhar Address</label>
+            {{ form.aadhar_address }}
+        </div>
+    
+    </div></div>
+    
+    <div class="row">
+        <div class="col-md-4">
+        <div id="job-fields">
+            <h4>Job Details</h4>
+            <div class="form-group">
+                <label for="id_net_salary_per_month">Net Salary per Month</label>
+                {{ form.net_salary_per_month }}
+            </div>
+            <div class="form-group">
+                <label for="id_company_name">Company Name</label>
+                {{ form.company_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_company_type">Company Type</label>
+                {{ form.company_type }}
+            </div>
+            <div class="form-group">
+                <label for="id_job_joining_date">Job Joining Date</label>
+                {{ form.job_joining_date }}
+            </div>
+            <div class="form-group">
+                <label for="id_job_location">Job Location</label>
+                {{ form.job_location }}
+            </div>
+            <div class="form-group">
+                <label for="id_total_job_experience">Total Job Experience (Years)</label>
+                {{ form.total_job_experience }}
+            </div>
+        </div>
+        </div>
+        </div>
+        <h4>Business Details</h4>
+          <div class="row">
+            <div class="col-md-4">
+        <div id="business-fields" style="display:none;">
+            
+            <div class="form-group">
+                <label for="id_net_income_per_month">Net Income per Month</label>
+                {{ form.net_income_per_month }}
+            </div>
+            <div class="form-group">
+                <label for="id_business_name">Business Name</label>
+                {{ form.business_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_business_type">Business Type</label>
+                {{ form.business_type }}
+            </div>
+            <div class="form-group">
+                <label for="id_business_establishment_date">Business Establishment Date</label>
+                {{ form.business_establishment_date }}
+            </div>
+            <div class="form-group">
+                <label for="id_gst_certificate">Do you have GST Certificate?</label>
+                {{ form.gst_certificate }}
+            </div>
+            <div class="form-group">
+                <label for="id_gst_number">GST Number</label>
+                {{ form.gst_number }}
+            </div>
+           
+            <div class="form-group">
+                <label for="id_turnover_in_lakhs_per_year">Turnover in Lakhs per Year</label>
+                {{ form.turnover_in_lakhs_per_year }}
+            </div>
+            <div class="form-group">
+                <label for="id_nature_of_business">Nature of Business</label>
+                {{ form.nature_of_business }}
+            </div>
+        </div>
+        </div>
+        
+<div class="col-md-4">
+        <div class="form-group">
+            <label for="id_property_value">Property Value (in Rs.)</label>
+            {{ form.property_value }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_required_loan_amount">Required Loan Amount (in Rs.)</label>
+            {{ form.required_loan_amount }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_existing_loan">Existing Loan</label>
+            {{ form.existing_loan }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_existing_loan_details">If yes, Bank/NBFC Name</label>
+            {{ form.existing_loan_details }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_ref1_name">Reference 1 Name</label>
+            {{ form.ref1_name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_ref1_mobile">Reference 1 Mobile Number</label>
+            {{ form.ref1_mobile }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_ref2_name">Reference 2 Name</label>
+            {{ form.ref2_name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_ref2_mobile">Reference 2 Mobile Number</label>
+            {{ form.ref2_mobile }}
+        </div>
+        </div>
+        
+        <!-- <div class="form-group">
+            <label for="id_remarks">Remarks</label>
+            {{ form.remarks }}
+        </div> -->
+</div>
+
+        <!-- Co-Applicant Fields -->
+        <h4>Co-Applicant Details</h4>
+        <div class="row">
+            <div class="col-md-4">
+        <div class="form-group">
+            <label for="id_co_applicant_first_name">Co-Applicant First Name</label>
+            {{ form.co_applicant_first_name }}
+        </div>
+        <div class="form-group">
+            <label for="id_co_applicant_last_name">Co-Applicant Last Name</label>
+            {{ form.co_applicant_last_name }}
+        </div>
+        <div class="form-group">
+            <label for="id_co_applicant_gender">Co-Applicant Gender</label>
+            {{ form.co_applicant_gender }}
+        </div>
+        <div class="form-group">
+            <label for="id_co_applicant_age">Co-Applicant Age</label>
+            {{ form.co_applicant_age }}
+        </div>
+        </div>
+        <div class="col-md-4">
+        <div class="form-group">
+            <label for="id_co_applicant_relationship">Relationship</label>
+            {{ form.co_applicant_relationship }}
+        </div>
+        <div class="form-group">
+            <label for="id_co_applicant_mobile_number">Co-Applicant Mobile Number</label>
+            {{ form.co_applicant_mobile_number }}
+        </div>
+        <div class="form-group">
+            <label for="id_co_applicant_email_id">Co-Applicant Email ID</label>
+            {{ form.co_applicant_email_id }}
+        </div>
+        <div class="form-group">
+            <label for="id_co_applicant_occupation">Co-Applicant Occupation</label>
+            {{ form.co_applicant_occupation }}
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4">
+        <div class="form-group">
+            <label for="id_co_applicant_net_income_per_month">Co-Applicant Net Income per Month</label>
+            {{ form.co_applicant_net_income_per_month }}
+        </div>
+        </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>
+</div>
+</body>
+</html>
