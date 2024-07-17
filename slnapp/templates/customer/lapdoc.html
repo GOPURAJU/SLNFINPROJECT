@@ -1,0 +1,57 @@
+{% extends 'customer/links.html' %}
+{% block content %}
+
+    <title>Document Upload</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Upload Documents</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                {{ form.adhar_card_front.label_tag }} {{ form.adhar_card_front }}
+                {{ form.adhar_card_back.label_tag }} {{ form.adhar_card_back }}
+                {{ form.pan_card.label_tag }} {{ form.pan_card }}
+                {{ form.customer_photo.label_tag }} {{ form.customer_photo }}
+                {{ form.property_photo1.label_tag }} {{ form.property_photo1 }}
+                {{ form.property_photo2.label_tag }} {{ form.property_photo2 }}
+                {{ form.property_photo3.label_tag }} {{ form.property_photo3 }}
+                {{ form.property_photo4.label_tag }} {{ form.property_photo4 }}
+                
+                {% if income_source == 'JOB' %}
+                    {{ form.pay_slips.label_tag }} {{ form.pay_slips }}
+                    {{ form.bank_statement.label_tag }} {{ form.bank_statement }}
+                    {{ form.employee_id_card.label_tag }} {{ form.employee_id_card }}
+                    <h3>business</h3>
+                {% elif income_source == 'BUSINESS' %}
+                    {{ form.business_proof1.label_tag }} {{ form.business_proof1 }}
+                    {{ form.business_proof2.label_tag }} {{ form.business_proof2 }}
+                    {{ form.bank_statement_12m.label_tag }} {{ form.bank_statement_12m }}
+                    {{ form.business_office_photo.label_tag }} {{ form.business_office_photo }}
+                    {{ form.itr1.label_tag }} {{ form.itr1 }}
+                    {{ form.itr2.label_tag }} {{ form.itr2 }}
+                    {{ form.itr3.label_tag }} {{ form.itr3 }}
+                    {{ form.address_proof.label_tag }} {{ form.address_proof }}
+                {% endif %}
+                <h3>lapt</h3>
+                {% if loan_type == 'lapbt' %}
+                    {{ form.existing_loan_statement.label_tag }} {{ form.existing_loan_statement }}
+                    {{ form.other_document1.label_tag }} {{ form.other_document1 }}
+                    {{ form.other_document2.label_tag }} {{ form.other_document2 }}
+                    {{ form.other_document3.label_tag }} {{ form.other_document3 }}
+                    {{ form.other_document4.label_tag }} {{ form.other_document4 }}
+                {% endif %}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock %}
